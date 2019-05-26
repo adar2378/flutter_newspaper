@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.15.8
   cached_network_image: ^0.8.0
   webview_flutter: ^0.3.7+1
+  flutter_easyrefresh: ^1.2.7
 
 dev_dependencies:
   flutter_test:

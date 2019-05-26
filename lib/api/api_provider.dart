@@ -16,8 +16,8 @@ class ApiProvider {
     List<Article> tempList = List<Article>();
     try {
       final response = await client
-          .get(Uri.https(
-              baseUrl, "/v2/top-headlines", {"country": "us", "apiKey": apiKey}))
+          .get(Uri.https(baseUrl, "/v2/top-headlines",
+              {"country": "us", "apiKey": apiKey}))
           .timeout(timeOutDuration, onTimeout: () {
         client.close();
         throw ("Time out exception");
