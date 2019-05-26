@@ -1,6 +1,6 @@
-# newspaperapp
+# News Reading App
 
-A new Flutter project.
+A news reading application using Flutter
 
 ## Getting Started
 
