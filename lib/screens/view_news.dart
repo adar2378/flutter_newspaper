@@ -5,8 +5,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class ViewNews extends StatefulWidget {
   final String newsUrl;
+  final String title;
 
-  ViewNews({this.newsUrl});
+  ViewNews({this.newsUrl, this.title});
   @override
   _ViewNewsState createState() => _ViewNewsState();
 }
@@ -27,6 +28,12 @@ class _ViewNewsState extends State<ViewNews> {
     print("news url: " + widget.newsUrl);
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          widget.title,
+          maxLines: 1,
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),
+          overflow: TextOverflow.clip,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(

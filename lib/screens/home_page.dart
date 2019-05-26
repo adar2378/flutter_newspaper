@@ -3,6 +3,7 @@ import 'package:newspaperapp/api/repository.dart';
 import 'package:newspaperapp/model/catagory.dart';
 import 'package:newspaperapp/model/news.dart';
 import 'package:newspaperapp/screens/generelized_page.dart';
+import 'package:newspaperapp/screens/view_news.dart';
 import 'package:newspaperapp/widgets/collapsable_appbar.dart';
 import 'package:newspaperapp/widgets/customized_indicator.dart';
 import 'package:intl/intl.dart';
@@ -17,10 +18,25 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController tabController;
   Future future;
+  double margin;
   @override
   void initState() {
     tabController = TabController(length: 7, vsync: this);
+    tabController.addListener(() {
+      if (margin == 8) {
+        if (tabController.index > 0) {
+          setState(() {
+            margin = 0;
+          });
+        }
+      } else if (margin == 0 && tabController.index == 0) {
+        setState(() {
+          margin = 8;
+        });
+      }
+    });
     future = Repository().getAllHeadLines();
+    margin = 8;
     super.initState();
   }
 
@@ -74,41 +90,47 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                     Flexible(
-                      child: TabBar(
-                        indicator: CustomTabIndicator(),
-                        labelColor: Color(0xFFD71556),
-                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        isScrollable: true,
-                        unselectedLabelColor: Colors.white,
-                        unselectedLabelStyle:
-                            TextStyle(fontWeight: FontWeight.w400),
-                        controller: tabController,
-                        tabs: <Widget>[
-                          Container(
-                            child: Tab(
-                              text: "General",
+                      child: AnimatedContainer(
+                        margin: EdgeInsets.only(
+                          left: margin,
+                        ),
+                        child: TabBar(
+                          indicator: CustomTabIndicator(),
+                          labelColor: Color(0xFFD71556),
+                          labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          isScrollable: true,
+                          unselectedLabelColor: Colors.white,
+                          unselectedLabelStyle:
+                              TextStyle(fontWeight: FontWeight.w400),
+                          controller: tabController,
+                          tabs: <Widget>[
+                            Container(
+                              child: Tab(
+                                text: "General",
+                              ),
                             ),
-                          ),
-                          Tab(
-                            text: "Business",
-                          ),
-                          Tab(
-                            text: "Entertainment",
-                          ),
-                          Tab(
-                            text: "Health",
-                          ),
-                          Tab(
-                            text: "Science",
-                          ),
-                          Tab(
-                            text: "Sports",
-                          ),
-                          Tab(
-                            text: "Technology",
-                          ),
-                        ],
+                            Tab(
+                              text: "Business",
+                            ),
+                            Tab(
+                              text: "Entertainment",
+                            ),
+                            Tab(
+                              text: "Health",
+                            ),
+                            Tab(
+                              text: "Science",
+                            ),
+                            Tab(
+                              text: "Sports",
+                            ),
+                            Tab(
+                              text: "Technology",
+                            ),
+                          ],
+                        ),
+                        duration: Duration(milliseconds: 150),
                       ),
                     ),
                   ],
@@ -129,7 +151,10 @@ class _HomePageState extends State<HomePage>
                               return GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(context, "/view_news",
-                                      arguments: snapshotlist.data[index].url);
+                                      arguments: ViewNews(
+                                        newsUrl: snapshotlist.data[index].url,
+                                        title: snapshotlist.data[index].source.name ?? "",
+                                      ));
                                 },
                                 child: Card(
                                   elevation: 5,
@@ -235,7 +260,11 @@ class _HomePageState extends State<HomePage>
                             },
                           );
                         } else {
-                          return Text("Loading...");
+                          return Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Loading..."),
+                          ));
                         }
                       },
                     ),

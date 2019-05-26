@@ -8,7 +8,9 @@ class MyRoutes {
       case '/single_news':
         return _buildRoute(settings, HomePage());
       case '/view_news':
-        return _buildRoute(settings, ViewNews(newsUrl: settings.arguments));
+        final ViewNews args = settings.arguments;
+        return _buildRoute(
+            settings, ViewNews(newsUrl: args.newsUrl, title: args.title));
       // case '/category_headlines':
       //   return _buildRoute(settings, CourseDetail(course: settings.arguments));
 

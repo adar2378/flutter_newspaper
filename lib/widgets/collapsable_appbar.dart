@@ -58,7 +58,7 @@ class _CollapsableAppBarState extends State<CollapsableAppBar> {
               curve: Curves.easeIn,
             ),
             AnimatedContainer(
-                height: MediaQuery.of(context).size.height - height,
+                height: MediaQuery.of(context).size.height - height - 20,
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeIn,
                 child: widget.child)

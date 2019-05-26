@@ -127,7 +127,10 @@ class _GeneralizedPageState extends State<GeneralizedPage>
             },
           );
         } else {
-          return Text("Loading...");
+          return Center(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Loading..."),
+          ));
         }
       },
     );
