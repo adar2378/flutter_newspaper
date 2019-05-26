@@ -1,16 +1,13 @@
 # News Reading App
 
-A news reading application using Flutter
+A news reading application using Flutter.
 
-## Getting Started
+## Details
 
-This project is a starting point for a Flutter application.
+This application was made using flutter. The news fetching was done by "https://newsapi.org/". Used flutter_webview plugin to show the news inside the app. The collapsable appbar was created using the Listener widget which lets you know if the user is scrolling up or down. And with the help of animatedcontainer I achieved the rest.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<img src="https://github.com/adar2378/flutter_newspaper/blob/master/screenshot1.png" width="240" height="390"><img src="https://github.com/adar2378/flutter_newspaper/blob/master/screenshot2.png" width="240" height="390"><img src="https://github.com/adar2378/flutter_newspaper/blob/master/screenshot3.png" width="240" height="390"><img src="https://github.com/adar2378/flutter_newspaper/blob/master/screenshot4.png" width="240" height="390">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
